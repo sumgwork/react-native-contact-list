@@ -1,4 +1,4 @@
-import StackNavigator from "./routes";
+import { TabNavigator } from "./routes";
 import { createAppContainer } from "react-navigation";
 
-export default createAppContainer(StackNavigator);
+export default createAppContainer(TabNavigator);
