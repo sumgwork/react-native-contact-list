@@ -1,25 +1,31 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
-import { Platform } from "react-native";
 
 import Contacts from "./screens/Contacts";
 import Profile from "./screens/Profile";
-
-const config = Platform.select({
-  web: { headerMode: "screen" },
-  default: {}
-});
+import colors from "./utils/colors";
 
 const StackNavigator = createStackNavigator(
   {
     Contacts: Contacts,
     Profile: Profile
   },
-  config
+  {
+    initialRouteName: "Contacts",
+    defaultNavigationOptions: {
+      headerTintColor: "white",
+      headerStyle: {
+        backgroundColor: colors.blue
+      }
+    }
+  }
 );
 
-StackNavigator.navigationOptions = {
-  tabBarLabel: "Home"
-};
+// StackNavigator.navigationOptions = {
+//   headerTintColor: "white",
+//   headerStyle: {
+//     backgroundColor: colors.blue
+//   }
+// };
 
 export default StackNavigator;

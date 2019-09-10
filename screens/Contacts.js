@@ -9,6 +9,7 @@ import {
 
 import ContactListItem from "../components/ContactListItem";
 import { fetchContacts } from "../utils/api";
+import colors from "../utils/colors";
 
 const Contacts = props => {
   const [contacts, setContacts] = useState([]);
@@ -67,7 +68,13 @@ const Contacts = props => {
   );
 };
 
-export default Contacts;
+Contacts.navigationOptions = {
+  title: "Contacts",
+  headerTintColor: colors.black,
+  headerStyle: {
+    backgroundColor: "white"
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -76,3 +83,5 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+export default Contacts;

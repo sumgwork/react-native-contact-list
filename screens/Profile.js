@@ -27,6 +27,19 @@ const Profile = ({
   );
 };
 
+Profile.navigationOptions = ({
+  navigation: {
+    state: { params }
+  }
+}) => {
+  const {
+    contact: { name }
+  } = params;
+  return {
+    title: name.split(" ")[0]
+  };
+};
+
 const styles = StyleSheet.create({
   container: { flex: 1, width: "100%" },
   avatarSection: {
