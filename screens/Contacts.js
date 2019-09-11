@@ -6,15 +6,15 @@ import {
   FlatList,
   ActivityIndicator
 } from "react-native";
-
+import store from "../store";
 import ContactListItem from "../components/ContactListItem";
 import { fetchContacts } from "../utils/api";
 import colors from "../utils/colors";
 
 const Contacts = props => {
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [contacts, setContacts] = useState(store.getState().contacts);
+  const [loading, setLoading] = useState(store.getState().isFetchingContacts);
+  const [error, setError] = useState(store.getState().error);
 
   const localFetchContacts = async () => {
     try {
@@ -29,8 +29,15 @@ const Contacts = props => {
     }
   };
 
+  const unsubscribe = store.onChange(() => {
+    setContacts(store.getState().contacts);
+    setLoading(store.getState().isFetchingContacts);
+    setError(store.getState().error);
+  });
+
   useEffect(() => {
     localFetchContacts();
+    return unsubscribe;
   }, []);
 
   const contactsSorted = contacts.sort((a, b) => a.name.localeCompare(b.name));

@@ -7,6 +7,7 @@ import Contacts from "./screens/Contacts";
 import Profile from "./screens/Profile";
 import Favourites from "./screens/Favourites";
 import User from "./screens/User";
+import Options from "./screens/Options";
 
 import colors from "./utils/colors";
 
@@ -41,8 +42,9 @@ const FavouritesScreen = createStackNavigator(
 );
 
 const UserScreen = createStackNavigator(
-  { User },
+  { User, Options },
   {
+    mode: "modal",
     initialRouteName: "User",
     defaultNavigationOptions: {
       tabBarIcon: getTabBarIcon("person")
